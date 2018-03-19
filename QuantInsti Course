@@ -1,0 +1,43 @@
+# Option-Trading-Strategies-Python
+import numpy as np
+import matplotlib.pyplot as plt\
+import seaborn
+#Seaborn is imported to make diagram more visual appealing
+# Infosys stock price
+spot_price = 900
+
+# Put strike price and cost
+Strike_price = 900
+Premium = 20
+
+# Stock price range at the expiration of the put
+# We have defined range for the stock price at expiry as +/- 10% from spot price
+# Syntax: numpy.arange(start price, stop price)
+Spot_price= np.arange(0.9*spot_price,1.1*spot_price)
+Spot_price
+payoff_longput = put_payoff(Spot_price,Strike_price,Premium)
+payoff_longput
+plt.plot(payoff_longput)
+plt.show()
+payoff_long_put = put_payoff(sT, strike_price, premium)
+# Plot the graph
+fig, ax = plt.subplots()
+ax.spines['bottom'].set_position('zero')
+ax.plot(sT,payoff_long_put,label='Put option buyer payoff')
+plt.xlabel('Infosys Stock Price')
+plt.ylabel('Profit and loss')
+plt.legend()
+plt.show()
+
+# Put option seller payoff
+
+#To get the payoff graph for option seller, we have multiplied the payoff of option buyer by -1.0, as the option buyer makes profit, the option seller will lose the exact same amount and vice-versa.
+payoff_short_put = payoff_long_put * -1.0
+# Plot
+fig, ax = plt.subplots()
+ax.spines['bottom'].set_position('zero')
+ax.plot(sT,payoff_short_put,label='Put option seller payoff',color='r')
+plt.xlabel('Infosys Stock Price')
+plt.ylabel('Profit and loss')
+plt.legend()
+plt.show()
